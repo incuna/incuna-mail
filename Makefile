@@ -1,8 +1,8 @@
 SHELL := /bin/bash
 
 help:
-	echo "release: publish package to Incuna's internal PyPI"
+	echo "release: publish package to the PyPI"
 
 release:
-	python setup.py regsiter -r incuna sdist upload -r incuna
-	python setup.py regsiter -r incuna bdist_wheel upload -r incuna
+	python setup.py regsiter sdist upload
+	python setup.py regsiter bdist_wheel upload
