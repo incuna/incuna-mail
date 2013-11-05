@@ -31,6 +31,15 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
     """
     current_site = Site.objects.get_current()
 
+    if isinstance(to, basestring):
+        to = [to]
+
+    if isinstance(cc, basestring):
+        cc = [cc]
+
+    if isinstance(bcc, basestring):
+        bcc = [bcc]
+
     if sender is None:
         sender = hasattr(settings, 'DEFAULT_FROM_EMAIL') and settings.DEFAULT_FROM_EMAIL or settings.SERVER_EMAIL
 
