@@ -1,9 +1,8 @@
 from django.conf import settings
-from django.contrib.sites.models import Site
-from django.template.loader import render_to_string
-from django.core.mail import EmailMultiAlternatives, EmailMessage
-
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
+from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.template.loader import render_to_string
 
 
 def get_manager_emails():
