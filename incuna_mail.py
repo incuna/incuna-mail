@@ -51,7 +51,7 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
     if extra_context is not None:
         context.update(extra_context)
 
-    attachment_list = [[a.name, a.read(), a.content_type] for a in attachments if attachments]
+    attachment_list = [[a.name, a.read(), a.content_type] for a in attachments]
 
     email_kwargs = {
         'from_email': sender,
