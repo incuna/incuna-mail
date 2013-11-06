@@ -4,6 +4,10 @@ from django.contrib.sites.models import Site
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
 
+try:
+    basestring
+except NameError:
+    basetring = str  # py3k
 
 def get_manager_emails():
     """
