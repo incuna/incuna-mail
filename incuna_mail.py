@@ -35,14 +35,11 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
     If no sender is specified then the DEFAULT_FROM_EMAIL or SERVER_EMAIL setting will be used.
     Any extra items passed in with kwargs will be added to the email headers.
     """
-    if isinstance(to, basestring):
-        to = [to]
-
-    if isinstance(cc, basestring):
-        cc = [cc]
-
-    if isinstance(bcc, basestring):
-        bcc = [bcc]
+    def listify(var):
+        if isinstance(var, basestring):
+            var = [var]
+        return var
+    to, cc, bcc = map(listify, [to, cc, bcc])
 
     if sender is None:
         sender = getattr(settings, 'DEFAULT_FROM_EMAIL', settings.SERVER_EMAIL)
