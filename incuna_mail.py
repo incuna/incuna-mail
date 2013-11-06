@@ -32,8 +32,6 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
     If no sender is specified then the DEFAULT_FROM_EMAIL or SERVER_EMAIL setting will be used.
     Any extra items passed in with kwargs will be added to the email headers.
     """
-    current_site = Site.objects.get_current()
-
     if isinstance(to, basestring):
         to = [to]
 
@@ -48,8 +46,7 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
 
     subject = unicode(subject)
 
-    context = {'site': current_site}
-
+    context = {'site': Site.objects.get_current()}
     if extra_context is not None:
         context.update(extra_context)
 
