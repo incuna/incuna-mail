@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.sites.models import Site
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -12,16 +12,12 @@ except NameError:  # python 3
 else:
     string_type = unicode
 
-def get_manager_emails():
-    """
-    Get a list of the managers email addresses.
-    """
-    addresses = User.objects.filter(is_staff=True).exclude(email='').distinct().values_list('email')
-    manager_emails = [m[0] for m in addresses]
-    if not manager_emails:
-        manager_emails = [m[1] for m in settings.MANAGERS]
 
-    return manager_emails
+def get_manager_emails():
+    """Get a list of the managers email addresses."""
+    staff = get_user_model().objects.filter(is_staff=True)
+    manager_emails = staff.exclude(email='').distinct().values_list('email', flat=True)
+    return manager_emails or [m[1] for m in settings.MANAGERS]
 
 
 def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
