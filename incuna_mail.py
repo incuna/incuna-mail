@@ -8,6 +8,9 @@ try:
     basestring
 except NameError:
     basetring = str  # py3k
+    string_type = str
+else:
+    string_type = unicode
 
 def get_manager_emails():
     """
@@ -44,7 +47,7 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
     if sender is None:
         sender = hasattr(settings, 'DEFAULT_FROM_EMAIL') and settings.DEFAULT_FROM_EMAIL or settings.SERVER_EMAIL
 
-    subject = unicode(subject)
+    subject = string_type(subject)
 
     context = {'site': Site.objects.get_current()}
     if extra_context is not None:
