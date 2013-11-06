@@ -45,7 +45,7 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
         bcc = [bcc]
 
     if sender is None:
-        sender = hasattr(settings, 'DEFAULT_FROM_EMAIL') and settings.DEFAULT_FROM_EMAIL or settings.SERVER_EMAIL
+        sender = getattr(settings, 'DEFAULT_FROM_EMAIL', settings.SERVER_EMAIL)
 
     context = {'site': Site.objects.get_current()}
     if extra_context is not None:
