@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 try:
     basestring
 except NameError:  # python 3
-    basetring = str
+    basestring = str
     string_type = str
 else:
     string_type = unicode
