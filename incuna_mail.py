@@ -3,14 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.sites.models import Site
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
-
-try:
-    basestring
-except NameError:  # python 3
-    basestring = str
-    string_type = str
-else:
-    string_type = unicode
+from django.utils import six
 
 
 def get_manager_emails():
@@ -31,7 +24,7 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
     If no sender is specified then the DEFAULT_FROM_EMAIL or SERVER_EMAIL setting will be used.
     Any extra items passed in with kwargs will be added to the email headers.
     """
-    to, cc, bcc = map(lambda v: [v] if isinstance(v, basestring) else v, [to, cc, bcc])
+    to, cc, bcc = map(lambda v: [v] if isinstance(v, six.string_types) else v, [to, cc, bcc])
 
     if sender is None:
         sender = getattr(settings, 'DEFAULT_FROM_EMAIL', settings.SERVER_EMAIL)
@@ -47,7 +40,7 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
         'to': to,
         'cc': cc,
         'bcc': bcc,
-        'subject': string_type(subject),
+        'subject': six.text_type(subject),
         'attachments': attachment_list,
         'headers': kwargs,
     }
