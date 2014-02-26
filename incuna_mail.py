@@ -14,7 +14,7 @@ def get_manager_emails():
 
 def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
          attachments=(), template_name=(), text_template_name=(),
-         extra_context=None, **kwargs):
+         context=None, **kwargs):
     """
     Render and send a (mail) template.
     if text_template_name is not None then a multipart email will be sent using
@@ -27,10 +27,6 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
 
     if sender is None:
         sender = getattr(settings, 'DEFAULT_FROM_EMAIL', settings.SERVER_EMAIL)
-
-    context = {}
-    if extra_context is not None:
-        context.update(extra_context)
 
     attachment_list = [[a.name, a.read(), a.content_type] for a in attachments]
 
