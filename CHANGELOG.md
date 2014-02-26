@@ -1,3 +1,7 @@
+v0.2.0
+
+* Remove implicit inclusion of the current site in send context
+
 v0.1.2
 ------
 * Use Django's `six` module to deal with unicode and strings and bytes.

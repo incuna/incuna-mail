@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.sites.models import Site
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils import six
@@ -15,12 +14,12 @@ def get_manager_emails():
 
 def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
          attachments=(), template_name=(), text_template_name=(),
-         extra_context=None, **kwargs):
+         context=None, **kwargs):
     """
     Render and send a (mail) template.
     if text_template_name is not None then a multipart email will be sent using
     template for the html part and text_template_name for the plain part.
-    The context will include the current site (and any extra_context specified).
+    The context will include any extra_context specified.
     If no sender is specified then the DEFAULT_FROM_EMAIL or SERVER_EMAIL setting will be used.
     Any extra items passed in with kwargs will be added to the email headers.
     """
@@ -28,10 +27,6 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
 
     if sender is None:
         sender = getattr(settings, 'DEFAULT_FROM_EMAIL', settings.SERVER_EMAIL)
-
-    context = {'site': Site.objects.get_current()}
-    if extra_context is not None:
-        context.update(extra_context)
 
     attachment_list = [[a.name, a.read(), a.content_type] for a in attachments]
 
