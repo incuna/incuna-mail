@@ -1,6 +1,8 @@
 v0.2.0
+------
 
 * Remove implicit inclusion of the current site in send context
+* Change argument name `extra_context` to `context`.
 
 v0.1.2
 ------
