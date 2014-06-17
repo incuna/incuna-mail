@@ -8,11 +8,9 @@ settings.configure(
     # Core environmental settings
     INSTALLED_APPS=(
         'django.contrib.auth',
-
-        'incuna_mail',
     ),
+    TEMPLATE_DIRS=('tests/templates',),
 )
-
 
 try:
     from django.test.runner import DiscoverRunner

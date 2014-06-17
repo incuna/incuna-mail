@@ -10,3 +10,7 @@ release:
 
 test:
 	python -Wall tests/run.py
+
+coverage:
+	@coverage run tests/run.py
+	@coverage report --show-missing
