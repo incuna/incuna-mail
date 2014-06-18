@@ -10,6 +10,9 @@ settings.configure(
         'django.contrib.auth',
     ),
     TEMPLATE_DIRS=('tests/templates',),
+
+    # For testing
+    DEFAULT_FROM_EMAIL='default@example.com',
 )
 
 try:
