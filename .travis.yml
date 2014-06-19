@@ -10,6 +10,13 @@ env:
   matrix:
     - DJANGO_VERSION='django>=1.6,<1.7'
     - DJANGO_VERSION='django>=1.5,<1.6'
+    - DJANGO_VERSION='django>=1.4,<1.5'
+matrix:
+  exclude:
+     - env: DJANGO_VERSION='django>=1.4,<1.5'
+       python: 3.4
+     - env: DJANGO_VERSION='django>=1.4,<1.5'
+       python: 3.3
 install:
   - psql -c 'CREATE DATABASE incuna_mail' -U postgres;
   - pip install $DJANGO_VERSION
