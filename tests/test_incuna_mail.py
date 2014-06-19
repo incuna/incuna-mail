@@ -1,4 +1,4 @@
-from unittest import TestCase
+from django.test import TestCase
 
 from django.core import mail
 
@@ -37,11 +37,13 @@ class TestIncunaMail(TestCase):
         return email
 
     def test_get_manager_emails(self):
-        managers = incuna_mail.get_manager_emails()
+        with self.settings(MANAGERS=[('manager1', 'm1@example.com')]):
+            managers = incuna_mail.get_manager_emails()
         self.assertEqual(managers, ['m1@example.com'])
 
     def test_default_email(self):
-        incuna_mail.send(to='recipient@example.com', template_name='dummy_template.html')
+        with self.settings(DEFAULT_FROM_EMAIL='default@example.com'):
+            incuna_mail.send(to='recipient@example.com', template_name='dummy_template.html')
         email = mail.outbox[0]
         self.assertEqual(email.from_email, 'default@example.com')
 

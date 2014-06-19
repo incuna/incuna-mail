@@ -15,10 +15,6 @@ settings.configure(
     DATABASES={
         'default': dj_database_url.config(default='postgres://localhost/incuna_mail'),
     },
-
-    # For testing
-    DEFAULT_FROM_EMAIL='default@example.com',
-    MANAGERS=[('manager1', 'm1@example.com')]
 )
 
 try:
