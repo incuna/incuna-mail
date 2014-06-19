@@ -15,7 +15,7 @@ matrix:
        python: 3.3 
 install:
   - psql -c 'CREATE DATABASE incuna_mail' -U postgres;
-  - pip install Django==$DJANGO_VERSION
+  - pip install $DJANGO_VERSION
   - pip install -e .
   - pip install -r test_requirements.txt
   - pip install coveralls
