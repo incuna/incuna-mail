@@ -1,0 +1,9 @@
+# Some version of Django - recommend django>=1.6,<1.7.
+# Travis will iterate over various versions of Django, so it's being left out
+# of the requirements file.
+
+colour-runner==0.0.4
+coverage==3.7.1
+django-discover-runner==1.0
+dj-database-url==0.3.0
+psycopg2==2.5.3
