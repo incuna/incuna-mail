@@ -8,7 +8,8 @@ import incuna_mail
 class TestIncunaMail(TestCase):
 
     def tearDown(self):
-        mail.outbox = []
+        # Empty the outbox to avoid emails persisting between tests.
+        mail.outbox = None
 
     def send_and_assert_email(self, text_template_name=()):
         """Runs send() on proper input and checks the result."""
