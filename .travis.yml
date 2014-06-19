@@ -6,9 +6,9 @@ env:
   global:
     - DATABASE_URL='postgres://postgres@localhost/incuna_mail'
   matrix:
-    - DJANGO_VERSION>=1.6,<1.7
-    - DJANGO_VERSION>=1.5,<1.6
-    - DJANGO_VERSION>=1.4,<1.5
+    - DJANGO_VERSION='django>=1.6,<1.7'
+    - DJANGO_VERSION='django>=1.5,<1.6'
+    - DJANGO_VERSION='django>=1.4,<1.5'
 matrix:
   exclude:
      - env: DJANGO_VERSION>=1.4,<1.5
