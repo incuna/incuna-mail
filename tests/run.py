@@ -2,17 +2,23 @@ import sys
 
 from colour_runner.django_runner import ColourRunnerMixin
 from django.conf import settings
+import dj_database_url
 
 
 settings.configure(
     # Core environmental settings
     INSTALLED_APPS=(
+        'django.contrib.contenttypes',
         'django.contrib.auth',
     ),
     TEMPLATE_DIRS=('tests/templates',),
+    DATABASES={
+        'default': dj_database_url.config(default='postgres://localhost/incuna_mail'),
+    },
 
     # For testing
     DEFAULT_FROM_EMAIL='default@example.com',
+    MANAGERS=[('manager1', 'm1@example.com')]
 )
 
 try:
