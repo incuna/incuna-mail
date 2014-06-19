@@ -8,19 +8,14 @@ try:
     from django.contrib.auth import get_user_model
 except ImportError:
     # Django < 1.5
-    from django.contrib.auth.models import User as ContribAuthUserModel
+    from django.contrib.auth.models import User
+else:
+    User = get_user_model()
 
 
 def get_manager_emails():
     """Get a list of the managers' email addresses."""
-    try:
-        # Django >=1.5
-        user_model = get_user_model()
-    except NameError:
-        # Django < 1.5
-        user_model = ContribAuthUserModel
-
-    staff = user_model.objects.filter(is_staff=True)
+    staff = User.objects.filter(is_staff=True)
     manager_emails = staff.exclude(email='').distinct().values_list('email', flat=True)
     return manager_emails or [m[1] for m in settings.MANAGERS]
 
