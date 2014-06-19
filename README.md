@@ -1,4 +1,4 @@
-# Incuna Mail
+# Incuna Mail  [![Build Status](https://travis-ci.org/incuna/incuna-mail.svg?branch=i5-add-tests)](https://travis-ci.org/incuna/incuna-mail)  [![Coverage Status](https://img.shields.io/coveralls/incuna/incuna-mail.svg)](https://coveralls.io/r/incuna/incuna-mail)
 
 A collection of mail utilities for Incuna Django projects.
 
