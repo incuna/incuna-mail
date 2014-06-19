@@ -1,13 +1,26 @@
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils import six
 
+try:
+    # Django >=1.5
+    from django.contrib.auth import get_user_model
+except ImportError:
+    # Django < 1.5
+    from django.contrib.auth.models import User as ContribAuthUserModel
+
 
 def get_manager_emails():
-    """Get a list of the managers email addresses."""
-    staff = get_user_model().objects.filter(is_staff=True)
+    """Get a list of the managers' email addresses."""
+    try:
+        # Django >=1.5
+        user_model = get_user_model()
+    except NameError:
+        # Django < 1.5
+        user_model = ContribAuthUserModel
+
+    staff = user_model.objects.filter(is_staff=True)
     manager_emails = staff.exclude(email='').distinct().values_list('email', flat=True)
     return manager_emails or [m[1] for m in settings.MANAGERS]
 
