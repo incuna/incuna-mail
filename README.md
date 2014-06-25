@@ -9,17 +9,72 @@ Install the package:
 
 
 ## Usage
-Import a function and call it:
+Import the `send` function and call it:
 
-    from incuna_mail import send
+```python
+from incuna_mail import send
 
-    kwargs = {
-        'to': ['foo@example.com'],
-        'bcc': ['bar@example.com'],
-        'subject': 'Test email',
-        'template_name': 'email.html',
-    }
-    send(**kwargs)
+send(
+    to='foo@example.com',
+    subject='Example email',
+    template_name='email.html',
+)
+```
 
+Supports `cc` and `bcc`...
 
-More email headers can be passed in using kwargs.
+```python
+send(
+    to='foo@example.com',
+    cc='bar@example.com',
+    bcc='baz@example.com',
+)
+```
+
+... lists of recipients...
+
+```python
+send(
+    to=['foo@example.com', 'bar@example.com'],
+    cc=['spam@example.com', 'eggs@example.com'],
+    ...
+)
+```
+
+... multi-part emails...
+
+```python
+send(
+    ...
+    template_name='email.html',
+    text_template_name='email.txt',
+)
+```
+
+... template context...
+
+```python
+send(
+    ...
+    context={'user': user},
+)
+```
+
+... template lists...
+
+```python
+send(
+    ...
+    # Uses the first template found.
+    template_name=['might-exist.html', 'will-exist.html'],
+)
+```
+
+... and custom email headers:
+
+```python
+send(
+    ...
+    headers={'Reply-To': 'another@example.com'}
+)
+```
