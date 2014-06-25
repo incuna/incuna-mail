@@ -28,6 +28,7 @@ send(
     to='foo@example.com',
     cc='bar@example.com',
     bcc='baz@example.com',
+    ...
 )
 ```
 
