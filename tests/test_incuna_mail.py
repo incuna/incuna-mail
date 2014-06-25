@@ -32,11 +32,6 @@ class TestIncunaMail(TestCase):
 
         return email
 
-    def test_get_manager_emails(self):
-        with self.settings(MANAGERS=[('manager1', 'm1@example.com')]):
-            managers = incuna_mail.get_manager_emails()
-        self.assertEqual(managers, ['m1@example.com'])
-
     def test_default_email(self):
         with self.settings(DEFAULT_FROM_EMAIL='default@example.com'):
             incuna_mail.send(to='recipient@example.com', template_name='dummy_template.html')

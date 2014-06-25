@@ -3,22 +3,6 @@ from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils import six
 
-try:
-    # Django >=1.5
-    from django.contrib.auth import get_user_model
-except ImportError:
-    # Django < 1.5
-    from django.contrib.auth.models import User
-else:
-    User = get_user_model()
-
-
-def get_manager_emails():
-    """Get a list of the managers' email addresses."""
-    staff = User.objects.filter(is_staff=True)
-    manager_emails = staff.exclude(email='').distinct().values_list('email', flat=True)
-    return manager_emails or [m[1] for m in settings.MANAGERS]
-
 
 def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
          attachments=(), template_name=(), text_template_name=(),

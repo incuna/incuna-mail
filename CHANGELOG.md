@@ -1,3 +1,9 @@
+Upcoming
+--------
+
+* Remove hardly-used `get_manager_emails` method. If you need this, feel free to
+  duplicate it from the previous version.
+
 v0.3.0
 ------
 
