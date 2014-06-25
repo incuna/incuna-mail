@@ -6,7 +6,7 @@ from django.utils import six
 
 def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
          attachments=(), template_name=(), text_template_name=(),
-         context=None, **kwargs):
+         context=None, headers=None):
     """
     Render and send a (mail) template.
     if text_template_name is not None then a multipart email will be sent using
@@ -29,7 +29,7 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
         'bcc': bcc,
         'subject': six.text_type(subject),
         'attachments': attachment_list,
-        'headers': kwargs,
+        'headers': headers or {},
     }
     if not text_template_name:
         email_kwargs['body'] = render_to_string(template_name, context)

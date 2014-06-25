@@ -3,6 +3,8 @@ Upcoming
 
 * Remove hardly-used `get_manager_emails` method. If you need this, feel free to
   duplicate it from the previous version.
+* Change how email headers are passed into `send()`. Now accepts `headers`
+  dictionary rather than using the unused `kwargs`.
 
 v0.3.0
 ------
