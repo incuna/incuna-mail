@@ -3,33 +3,20 @@ from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils import six
 
-try:
-    # Django >=1.5
-    from django.contrib.auth import get_user_model
-except ImportError:
-    # Django < 1.5
-    from django.contrib.auth.models import User
-else:
-    User = get_user_model()
-
-
-def get_manager_emails():
-    """Get a list of the managers' email addresses."""
-    staff = User.objects.filter(is_staff=True)
-    manager_emails = staff.exclude(email='').distinct().values_list('email', flat=True)
-    return manager_emails or [m[1] for m in settings.MANAGERS]
-
 
 def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
          attachments=(), template_name=(), text_template_name=(),
-         context=None, **kwargs):
+         context=None, headers=None):
     """
-    Render and send a (mail) template.
-    if text_template_name is not None then a multipart email will be sent using
-    template for the html part and text_template_name for the plain part.
-    The context will include any extra_context specified.
-    If no sender is specified then the DEFAULT_FROM_EMAIL or SERVER_EMAIL setting will be used.
-    Any extra items passed in with kwargs will be added to the email headers.
+    Render and send an email.
+
+    If `text_template_name` is passed then a multipart email will be sent using
+    `template_name` for the html part and `text_template_name` for the plain part.
+    The context will include any `context` specified.
+
+    If no `sender` is specified then the DEFAULT_FROM_EMAIL or SERVER_EMAIL setting will be used.
+
+    Extra email headers can be passed in to `headers` as a dictionary.
     """
     to, cc, bcc = map(lambda v: [v] if isinstance(v, six.string_types) else v, [to, cc, bcc])
 
@@ -45,7 +32,7 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
         'bcc': bcc,
         'subject': six.text_type(subject),
         'attachments': attachment_list,
-        'headers': kwargs,
+        'headers': headers or {},
     }
     if not text_template_name:
         email_kwargs['body'] = render_to_string(template_name, context)

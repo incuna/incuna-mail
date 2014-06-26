@@ -4,6 +4,8 @@ python:
   - 3.3
   - 2.7
 script: make coverage
+notifications:
+  email: false
 env:
   global:
     - DATABASE_URL='postgres://postgres@localhost/incuna_mail'
