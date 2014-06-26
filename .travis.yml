@@ -7,8 +7,6 @@ script: make coverage
 notifications:
   email: false
 env:
-  global:
-    - DATABASE_URL='postgres://postgres@localhost/incuna_mail'
   matrix:
     - DJANGO_VERSION='django>=1.6,<1.7'
     - DJANGO_VERSION='django>=1.5,<1.6'
@@ -20,7 +18,6 @@ matrix:
      - env: DJANGO_VERSION='django>=1.4,<1.5'
        python: 3.3
 install:
-  - psql -c 'CREATE DATABASE incuna_mail' -U postgres;
   - pip install $DJANGO_VERSION
   - pip install -e .
   - pip install -r test_requirements.txt

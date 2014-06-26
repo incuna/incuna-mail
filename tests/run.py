@@ -2,19 +2,16 @@ import sys
 
 from colour_runner.django_runner import ColourRunnerMixin
 from django.conf import settings
-import dj_database_url
 
 
 settings.configure(
-    # Core environmental settings
-    INSTALLED_APPS=(
-        'django.contrib.contenttypes',
-        'django.contrib.auth',
-    ),
-    TEMPLATE_DIRS=('tests/templates',),
     DATABASES={
-        'default': dj_database_url.config(default='postgres://localhost/incuna_mail'),
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
     },
+    TEMPLATE_DIRS=('tests/templates',),
 )
 
 try:
