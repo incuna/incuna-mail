@@ -4,8 +4,12 @@ from django.template.loader import render_to_string
 from django.utils import six
 
 
-def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
-         attachments=(), template_name=(), text_template_name=(),
+def listify(obj):
+    return [obj] if isinstance(obj, six.string_types) else obj
+
+
+def send(sender=None, to=None, cc=None, bcc=None, subject='mail',
+         attachments=(), template_name=None, text_template_name=None,
          context=None, headers=None):
     """
     Render and send an email.
@@ -18,7 +22,7 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
 
     Extra email headers can be passed in to `headers` as a dictionary.
     """
-    to, cc, bcc = map(lambda v: [v] if isinstance(v, six.string_types) else v, [to, cc, bcc])
+    to, cc, bcc = map(listify, [to, cc, bcc])
 
     if sender is None:
         sender = getattr(settings, 'DEFAULT_FROM_EMAIL', settings.SERVER_EMAIL)
@@ -34,14 +38,14 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
         'attachments': attachment_list,
         'headers': headers or {},
     }
+
+    html_content = render_to_string(template_name or (), context)
     if not text_template_name:
-        email_kwargs['body'] = render_to_string(template_name, context)
+        email_kwargs['body'] = html_content
         msg = EmailMessage(**email_kwargs)
     else:
         email_kwargs['body'] = render_to_string(text_template_name, context)
         msg = EmailMultiAlternatives(**email_kwargs)
-
-        html_content = render_to_string(template_name, context)
         msg.attach_alternative(html_content, 'text/html')
 
     msg.send()

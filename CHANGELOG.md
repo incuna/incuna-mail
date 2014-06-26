@@ -9,6 +9,7 @@ Upcoming
 * Change how email headers are passed into `send()`. Now accepts `headers`
   dictionary rather than using the unused `kwargs`.
 * Remove psql dependency for tests.
+* Change many defaults from `()` to `None` in signature of `send`.
 
 v0.3.0
 ------
