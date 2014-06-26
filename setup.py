@@ -3,8 +3,8 @@ from setuptools import setup
 
 setup(
     name='incuna-mail',
-    version='0.3.0',
-    url='http://github.com/incuna/incuna-mail',
+    version='1.0.0',
+    url='https://github.com/incuna/incuna-mail',
     license='MIT',
     author='Incuna Ltd',
     author_email='admin@incuna.com',
