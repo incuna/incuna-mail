@@ -1,5 +1,11 @@
 Upcoming
 --------
+
+* Remove psql dependency for tests.
+
+Upcoming
+--------
+
 **Backwards incompatible.**
 
 * Remove hardly-used `get_manager_emails` method. If you need this, feel free to
