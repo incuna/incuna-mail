@@ -5,7 +5,7 @@ from django.utils import six
 
 
 def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
-         attachments=(), template_name=(), text_template_name=(),
+         attachments=(), template_name=None, text_template_name=None,
          context=None, headers=None):
     """
     Render and send an email.
@@ -34,14 +34,14 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
         'attachments': attachment_list,
         'headers': headers or {},
     }
+
+    html_content = render_to_string(template_name or (), context)
     if not text_template_name:
-        email_kwargs['body'] = render_to_string(template_name, context)
+        email_kwargs['body'] = html_content
         msg = EmailMessage(**email_kwargs)
     else:
         email_kwargs['body'] = render_to_string(text_template_name, context)
         msg = EmailMultiAlternatives(**email_kwargs)
-
-        html_content = render_to_string(template_name, context)
         msg.attach_alternative(html_content, 'text/html')
 
     msg.send()
