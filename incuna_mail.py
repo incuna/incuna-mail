@@ -16,7 +16,7 @@ def send(sender=None, to=(), cc=(), bcc=(), subject='mail',
 
     If no `sender` is specified then the DEFAULT_FROM_EMAIL or SERVER_EMAIL setting will be used.
 
-    Extra email headers can be passed in to `headers` as a dictionary..
+    Extra email headers can be passed in to `headers` as a dictionary.
     """
     to, cc, bcc = map(lambda v: [v] if isinstance(v, six.string_types) else v, [to, cc, bcc])
 
