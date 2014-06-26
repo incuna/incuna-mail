@@ -1,3 +1,4 @@
+# encoding: utf-8
 from django.test import TestCase
 
 from django.core import mail
@@ -46,3 +47,15 @@ class TestIncunaMail(TestCase):
         email = self.send_and_assert_email('dummy_text_template.html')
         self.assertEqual(email.body, u'hello!\n')
         self.assertEqual(email.alternatives[0], (u'<p>hi!</p>\n', 'text/html'))
+
+
+class TestListify(TestCase):
+    def test_passed_string(self):
+        """Strings should be wrapped in a list"""
+        string = u'(╯°□°）╯︵ ┻━┻'
+        self.assertEqual(incuna_mail.listify(string), [string])
+
+    def test_passed_list(self):
+        """Lists should not be wrapped in lists"""
+        array = [u'string']
+        self.assertEqual(incuna_mail.listify(array), array)
