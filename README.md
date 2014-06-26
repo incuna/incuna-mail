@@ -79,3 +79,12 @@ send(
     headers={'Reply-To': 'another@example.com'}
 )
 ```
+
+The email sender can be set globally with `settings.DEFAULT_FROM_EMAIL`, and will default to `settings.SERVER_EMAIL`. It can be explicitly set on each call, if required:
+
+```python
+send(
+    ...
+    sender='eggy-mcspambot@example.com',
+)
+```
