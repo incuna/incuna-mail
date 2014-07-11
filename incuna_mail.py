@@ -9,13 +9,13 @@ def listify(obj):
 
 
 def send(sender=None, to=None, cc=None, bcc=None, subject='mail',
-         attachments=(), template_name=None, text_template_name=None,
+         attachments=(), template_name=None, html_template_name=None,
          context=None, headers=None):
     """
-    Render and send an email.
+    Render and send an email.  `template_name` is a plaintext template.
 
-    If `text_template_name` is passed then a multipart email will be sent using
-    `template_name` for the html part and `text_template_name` for the plain part.
+    If `html_template_name` is passed then a multipart email will be sent using
+    `template_name` for the text part and `html_template_name` for the HTML part.
     The context will include any `context` specified.
 
     If no `sender` is specified then the DEFAULT_FROM_EMAIL or SERVER_EMAIL setting will be used.
@@ -39,13 +39,14 @@ def send(sender=None, to=None, cc=None, bcc=None, subject='mail',
         'headers': headers or {},
     }
 
-    html_content = render_to_string(template_name or (), context)
-    if not text_template_name:
-        email_kwargs['body'] = html_content
+    text_content = render_to_string(template_name or (), context)
+    email_kwargs['body'] = text_content
+    
+    if not html_template_name:
         msg = EmailMessage(**email_kwargs)
     else:
-        email_kwargs['body'] = render_to_string(text_template_name, context)
         msg = EmailMultiAlternatives(**email_kwargs)
+        html_content = render_to_string(html_template_name, context)
         msg.attach_alternative(html_content, 'text/html')
 
     msg.send()
