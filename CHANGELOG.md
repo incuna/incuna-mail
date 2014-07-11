@@ -1,3 +1,12 @@
+Upcoming
+------
+
+**Backwards incompatible** for anything using multipart emails.
+
+* `template_name` is now always plaintext.
+* `text_template_name` has been replaced with `html_template_name` that points
+  to an HTML template.
+
 v1.0.0
 ------
 
