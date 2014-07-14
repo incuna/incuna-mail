@@ -17,7 +17,7 @@ from incuna_mail import send
 send(
     to='foo@example.com',
     subject='Example email',
-    template_name='email.html',
+    template_name='plaintext_email.txt',
 )
 ```
 
@@ -47,8 +47,8 @@ send(
 ```python
 send(
     ...
-    template_name='email.html',
-    text_template_name='email.txt',
+    template_name='plaintext_email.txt',
+    html_template_name='html_email.html',
 )
 ```
 

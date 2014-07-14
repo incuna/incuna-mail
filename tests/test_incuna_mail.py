@@ -7,7 +7,7 @@ import incuna_mail
 
 
 class TestIncunaMail(TestCase):
-    def send_and_assert_email(self, text_template_name=()):
+    def send_and_assert_email(self, html_template_name=()):
         """Runs send() on proper input and checks the result."""
         kwargs = {
             'sender': ['email@example.com'],
@@ -16,7 +16,7 @@ class TestIncunaMail(TestCase):
             'bcc': ['bcc@example.com'],
             'subject': 'Test email',
             'template_name': 'dummy_template.html',
-            'text_template_name': text_template_name,
+            'html_template_name': html_template_name,
         }
 
         incuna_mail.send(**kwargs)
@@ -41,10 +41,10 @@ class TestIncunaMail(TestCase):
 
     def test_send_email(self):
         email = self.send_and_assert_email()
-        self.assertEqual(email.body, u'<p>hi!</p>\n')
+        self.assertEqual(email.body, u'hello!\n')
 
     def test_send_multipart_email(self):
-        email = self.send_and_assert_email('dummy_text_template.html')
+        email = self.send_and_assert_email('dummy_html_template.html')
         self.assertEqual(email.body, u'hello!\n')
         self.assertEqual(email.alternatives[0], (u'<p>hi!</p>\n', 'text/html'))
 
