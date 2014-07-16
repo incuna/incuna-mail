@@ -1,4 +1,4 @@
-Upcoming
+v2.0.0
 ------
 
 **Backwards incompatible** for anything using multipart emails.
