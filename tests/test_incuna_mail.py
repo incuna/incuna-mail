@@ -6,7 +6,7 @@ import incuna_mail
 
 
 class TestIncunaMail(TestCase):
-    def send_and_assert_email(self, html_template_name=()):
+    def send_and_assert_email(self, html_template_name=None):
         """Runs send() on proper input and checks the result."""
         kwargs = {
             'sender': ['email@example.com'],
@@ -49,6 +49,11 @@ class TestIncunaMail(TestCase):
         email = self.send_and_assert_email('dummy_html_template.html')
         self.assertEqual(email.body, u'hello!\n')
         self.assertEqual(email.alternatives[0], (u'<p>hi!</p>\n', 'text/html'))
+
+    def test_do_not_send_empty_email(self):
+        """Regression test to assert empty email can't be send."""
+        with self.assertRaises(TypeError):
+            incuna_mail.send()
 
 
 class TestListify(TestCase):

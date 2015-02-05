@@ -8,9 +8,8 @@ def listify(obj):
     return [obj] if isinstance(obj, six.string_types) else obj
 
 
-def send(sender=None, to=None, cc=None, bcc=None, subject='mail',
-         attachments=(), template_name=None, html_template_name=None,
-         context=None, headers=None):
+def send(template_name, sender=None, to=None, cc=None, bcc=None, subject='mail',
+         attachments=(), html_template_name=None, context=None, headers=None):
     """
     Render and send an email.  `template_name` is a plaintext template.
 
@@ -40,10 +39,10 @@ def send(sender=None, to=None, cc=None, bcc=None, subject='mail',
         'headers': headers or {},
     }
 
-    text_content = render_to_string(template_name or (), context)
+    text_content = render_to_string(template_name, context)
     email_kwargs['body'] = text_content
 
-    if not html_template_name:
+    if html_template_name is None:
         msg = EmailMessage(**email_kwargs)
     else:
         msg = EmailMultiAlternatives(**email_kwargs)

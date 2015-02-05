@@ -1,3 +1,8 @@
+v2.0.1
+------
+
+* Fix `template_name` by making it compulsory in the function signature.
+
 v2.0.0
 ------
 
