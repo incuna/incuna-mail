@@ -1,6 +1,7 @@
 import sys
 
 from colour_runner.django_runner import ColourRunnerMixin
+import django
 from django.conf import settings
 
 
@@ -11,8 +12,14 @@ settings.configure(
             'NAME': ':memory:',
         }
     },
+    MIDDLEWARE_CLASSES = (),
     TEMPLATE_DIRS=('tests/templates',),
 )
+
+
+if django.VERSION >= (1, 7):
+    django.setup()
+
 
 try:
     from django.test.runner import DiscoverRunner
