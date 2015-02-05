@@ -42,7 +42,7 @@ def send(sender=None, to=None, cc=None, bcc=None, subject='mail',
 
     text_content = render_to_string(template_name or (), context)
     email_kwargs['body'] = text_content
-    
+
     if not html_template_name:
         msg = EmailMessage(**email_kwargs)
     else:
