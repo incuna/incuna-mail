@@ -12,7 +12,7 @@ settings.configure(
             'NAME': ':memory:',
         }
     },
-    MIDDLEWARE_CLASSES = (),
+    MIDDLEWARE_CLASSES=(),
     TEMPLATE_DIRS=('tests/templates',),
 )
 
