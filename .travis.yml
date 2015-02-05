@@ -3,7 +3,7 @@ python:
   - 3.4
   - 3.3
   - 2.7
-script: make coverage
+script: make test
 notifications:
   email: false
 env:
