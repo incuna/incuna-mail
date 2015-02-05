@@ -1,7 +1,6 @@
 # encoding: utf-8
-from django.test import TestCase
-
 from django.core import mail
+from django.test import TestCase
 
 import incuna_mail
 

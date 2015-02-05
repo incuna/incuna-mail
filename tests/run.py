@@ -1,7 +1,7 @@
 import sys
 
-from colour_runner.django_runner import ColourRunnerMixin
 import django
+from colour_runner.django_runner import ColourRunnerMixin
 from django.conf import settings
 
 

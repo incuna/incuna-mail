@@ -5,3 +5,4 @@
 colour-runner==0.0.4
 coverage==3.7.1
 django-discover-runner==1.0
+flake8-import-order==0.5.1
