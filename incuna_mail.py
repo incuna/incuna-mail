@@ -18,7 +18,8 @@ def send(sender=None, to=None, cc=None, bcc=None, subject='mail',
     `template_name` for the text part and `html_template_name` for the HTML part.
     The context will include any `context` specified.
 
-    If no `sender` is specified then the DEFAULT_FROM_EMAIL or SERVER_EMAIL setting will be used.
+    If no `sender` is specified then the `DEFAULT_FROM_EMAIL` or `SERVER_EMAIL`
+    setting will be used.
 
     Extra email headers can be passed in to `headers` as a dictionary.
     """

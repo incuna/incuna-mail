@@ -35,7 +35,10 @@ class TestIncunaMail(TestCase):
 
     def test_default_email(self):
         with self.settings(DEFAULT_FROM_EMAIL='default@example.com'):
-            incuna_mail.send(to='recipient@example.com', template_name='dummy_template.html')
+            incuna_mail.send(
+                to='recipient@example.com',
+                template_name='dummy_template.html',
+            )
         email = mail.outbox[0]
         self.assertEqual(email.from_email, 'default@example.com')
 
