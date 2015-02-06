@@ -9,6 +9,6 @@ release:
 	python setup.py register bdist_wheel upload
 
 test:
-	@coverage run tests/run.py
+	@python -Wmodule -m coverage run tests/run.py
 	@coverage report --show-missing
 	@flake8
