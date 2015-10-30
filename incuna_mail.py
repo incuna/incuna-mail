@@ -9,8 +9,8 @@ def listify(obj):
 
 
 def send(template_name, sender=None, to=None, cc=None, bcc=None, subject='mail',
-         attachments=(), reply_to=None, html_template_name=None, context=None,
-         headers=None):
+         attachments=(), html_template_name=None, context=None, headers=None,
+         reply_to=None):
     """
     Render and send an email.  `template_name` is a plaintext template.
 
