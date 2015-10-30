@@ -23,7 +23,7 @@ def send(template_name, sender=None, to=None, cc=None, bcc=None, subject='mail',
 
     Extra email headers can be passed in to `headers` as a dictionary.
     """
-    to, cc, bcc = map(listify, [to, cc, bcc])
+    to, cc, bcc, reply_to = map(listify, [to, cc, bcc, reply_to])
 
     if sender is None:
         sender = getattr(settings, 'DEFAULT_FROM_EMAIL', settings.SERVER_EMAIL)
