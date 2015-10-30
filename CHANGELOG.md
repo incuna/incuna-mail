@@ -1,4 +1,4 @@
-Upcoming
+v4.0.0
 ------
 
 * Drop support for Django 1.7 and below.
