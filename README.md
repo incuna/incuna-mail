@@ -71,12 +71,21 @@ send(
 )
 ```
 
+... reply-to addresses...
+
+```python
+send(
+    ...
+    reply_to=['another@example.com'],
+)
+```
+
 ... and custom email headers:
 
 ```python
 send(
     ...
-    headers={'Reply-To': 'another@example.com'}
+    headers={'Extra-Header': 'This will appear among the email headers'}
 )
 ```
 

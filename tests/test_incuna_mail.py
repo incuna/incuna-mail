@@ -15,6 +15,7 @@ class TestIncunaMail(TestCase):
             'bcc': ['bcc@example.com'],
             'subject': 'Test email',
             'template_name': 'dummy_template.html',
+            'reply_to': ['reply_to@example.com'],
             'html_template_name': html_template_name,
         }
 
@@ -29,6 +30,7 @@ class TestIncunaMail(TestCase):
         self.assertEqual(email.cc, kwargs['cc'])
         self.assertEqual(email.bcc, kwargs['bcc'])
         self.assertEqual(email.subject, kwargs['subject'])
+        self.assertEqual(email.reply_to, kwargs['reply_to'])
 
         return email
 
