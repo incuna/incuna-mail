@@ -9,7 +9,8 @@ def listify(obj):
 
 
 def send(template_name, sender=None, to=None, cc=None, bcc=None, subject='mail',
-         attachments=(), html_template_name=None, context=None, headers=None):
+         attachments=(), reply_to=None, html_template_name=None, context=None,
+         headers=None):
     """
     Render and send an email.  `template_name` is a plaintext template.
 
@@ -36,6 +37,7 @@ def send(template_name, sender=None, to=None, cc=None, bcc=None, subject='mail',
         'bcc': bcc,
         'subject': six.text_type(subject),
         'attachments': attachment_list,
+        'reply_to': reply_to,
         'headers': headers or {},
     }
 

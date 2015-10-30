@@ -1,3 +1,9 @@
+Upcoming
+------
+
+* Drop support for Django 1.7 and below.
+* Add `reply_to` argument to `send()`.
+
 v3.0.0
 ------
 
