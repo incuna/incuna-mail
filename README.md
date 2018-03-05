@@ -1,4 +1,4 @@
-# Incuna Mail  [![Build Status](https://travis-ci.org/incuna/incuna-mail.svg?branch=i5-add-tests)](https://travis-ci.org/incuna/incuna-mail)  [![Coverage Status](https://img.shields.io/coveralls/incuna/incuna-mail.svg)](https://coveralls.io/r/incuna/incuna-mail) [![Wheel Status](https://pypip.in/wheel/incuna-mail/badge.png)](https://pypi.python.org/pypi/incuna-mail/) [![Latest Version](https://pypip.in/version/incuna-mail/badge.png)](https://pypi.python.org/pypi/incuna-mail/)
+# Incuna Mail  [![Build Status](https://travis-ci.org/incuna/incuna-mail.svg?branch=i5-add-tests)](https://travis-ci.org/incuna/incuna-mail)  [![Coverage Status](https://img.shields.io/coveralls/incuna/incuna-mail.svg)](https://coveralls.io/r/incuna/incuna-mail) [![Wheel Status](https://img.shields.io/pypi/wheel/incuna-mail.svg)](https://pypi.python.org/pypi/incuna-mail/) [![Latest Version](https://img.shields.io/pypi/v/incuna-mail.svg)](https://pypi.python.org/pypi/incuna-mail/)
 
 Pythonic utility for sending template based emails with Django.
 
