@@ -13,7 +13,13 @@ settings.configure(
         }
     },
     MIDDLEWARE_CLASSES=(),
-    TEMPLATE_DIRS=('tests/templates',),
+    TEMPLATES=[
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'APP_DIRS': False,
+            'DIRS': ('tests/templates',),
+        },
+    ]
 )
 
 
