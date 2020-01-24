@@ -1,3 +1,10 @@
+[UNRELEASED]
+------
+
+* Add CI tests for Django 1.11, 2.2, 3.0.
+* Add CI tests for Python 3.5, 3.6, 3.7, 3.8.
+* Drop CI tests for Python 3.3.
+
 v4.0.0
 ------
 
