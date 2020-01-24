@@ -6,7 +6,6 @@ python:
   - 3.6
   - 3.5
   - 3.4
-  - 3.3
   - 2.7
 script: make test
 notifications:
@@ -59,14 +58,6 @@ jobs:
     - python: 3.4
       env: DJANGO_VERSION='django~=2.2.9'
     - python: 3.4
-      env: DJANGO_VERSION='django~=3.0.2'
-    - python: 3.3
-      env: DJANGO_VERSION='django~=2.0.13'
-    - python: 3.3
-      env: DJANGO_VERSION='django~=2.1.15'
-    - python: 3.3
-      env: DJANGO_VERSION='django~=2.2.9'
-    - python: 3.3
       env: DJANGO_VERSION='django~=3.0.2'
     - python: 2.7
       env: DJANGO_VERSION='django~=2.0.13'
