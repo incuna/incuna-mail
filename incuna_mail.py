@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
-from django.utils import six
+import six
 
 
 def listify(obj):

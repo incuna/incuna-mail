@@ -10,6 +10,7 @@ setup(
     author_email='admin@incuna.com',
     description='Pythonic utility for sending template based emails with Django.',
     py_modules=['incuna_mail'],
+    install_requires=['six'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
