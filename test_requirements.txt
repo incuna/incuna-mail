@@ -5,4 +5,3 @@
 colour-runner==0.0.4
 coverage==4.5.4
 flake8==2.3.0
-flake8-import-order==0.5.1
