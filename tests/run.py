@@ -3,6 +3,7 @@ import sys
 import django
 from colour_runner.django_runner import ColourRunnerMixin
 from django.conf import settings
+from django.test.runner import DiscoverRunner
 
 
 settings.configure(
@@ -13,19 +14,17 @@ settings.configure(
         }
     },
     MIDDLEWARE_CLASSES=(),
-    TEMPLATE_DIRS=('tests/templates',),
+    TEMPLATES=[
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'APP_DIRS': False,
+            'DIRS': ('tests/templates',),
+        },
+    ]
 )
 
 
-if django.VERSION >= (1, 7):
-    django.setup()
-
-
-try:
-    from django.test.runner import DiscoverRunner
-except ImportError:
-    # Django < 1.6
-    from discover_runner import DiscoverRunner
+django.setup()
 
 
 class Runner(ColourRunnerMixin, DiscoverRunner):

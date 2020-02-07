@@ -1,7 +1,11 @@
+---
 language: python
 python:
+  - 3.8
+  - 3.7
+  - 3.6
+  - 3.5
   - 3.4
-  - 3.3
   - 2.7
 script: make test
 notifications:
@@ -9,6 +13,9 @@ notifications:
 env:
   matrix:
     - DJANGO_VERSION='django~=1.8.5'
+    - DJANGO_VERSION='django~=1.11.26'
+    - DJANGO_VERSION='django~=2.2.9'
+    - DJANGO_VERSION='django~=3.0.2'
 install:
   - pip install $DJANGO_VERSION
   - pip install -e .
@@ -16,3 +23,23 @@ install:
   - pip install coveralls
 after_success:
   coveralls
+jobs:
+  exclude:
+    - python: 3.8
+      env: DJANGO_VERSION='django~=1.8.5'
+    - python: 3.8
+      env: DJANGO_VERSION='django~=1.11.26'
+    - python: 3.7
+      env: DJANGO_VERSION='django~=1.8.5'
+    - python: 3.6
+      env: DJANGO_VERSION='django~=1.8.5'
+    - python: 3.5
+      env: DJANGO_VERSION='django~=3.0.2'
+    - python: 3.4
+      env: DJANGO_VERSION='django~=2.2.9'
+    - python: 3.4
+      env: DJANGO_VERSION='django~=3.0.2'
+    - python: 2.7
+      env: DJANGO_VERSION='django~=2.2.9'
+    - python: 2.7
+      env: DJANGO_VERSION='django~=3.0.2'
