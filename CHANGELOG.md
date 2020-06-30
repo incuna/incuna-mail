@@ -1,4 +1,4 @@
-[UNRELEASED]
+v4.1.0
 ------
 
 * Add CI tests for Django 1.11, 2.2, 3.0.
