@@ -3,12 +3,14 @@ from setuptools import setup
 
 setup(
     name='incuna-mail',
-    version='4.1.0',
+    version='4.1.1',
     url='https://github.com/incuna/incuna-mail',
     license='MIT',
     author='Incuna Ltd',
     author_email='admin@incuna.com',
     description='Pythonic utility for sending template based emails with Django.',
+    long_description_content_type='text/markdown',
+    long_description=open('README.md').read(),
     py_modules=['incuna_mail'],
     install_requires=['six'],
     classifiers=[

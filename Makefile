@@ -5,8 +5,8 @@ help:
 	echo "test: run unit tests"
 
 release:
-	python setup.py register sdist upload
-	python setup.py register bdist_wheel upload
+	python setup.py register sdist bdist_wheel
+	twine upload dist/*
 
 test:
 	@python -Wmodule -m coverage run tests/run.py

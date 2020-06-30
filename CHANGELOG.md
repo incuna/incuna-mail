@@ -1,3 +1,8 @@
+v4.1.1
+------
+
+* Add long_description to setup.py.
+
 v4.1.0
 ------
 
